@@ -37,15 +37,21 @@ data <- keepsdat[!keepsdat$date %in% dropdays,]
 dim(data)
 
 # calculate returns per day
-returns <- data %>% 
-   group_by(date) %>%
-   mutate(rs = close/lag(close)-1)
+#returns <- data %>% 
+#   group_by(date) %>%
+#   mutate(rs = close/lag(close)-1)
 
-returns <- data.frame(returns)
+#returns <- data.frame(returns)
+#head(returns)
 
-head(returns)
+rs <- data$close/lag(data$close)-1
+returns <- data.frame(data$date,data$Time,rs)
+names(returns) <- c("date","Time","rs")
+head(returns) 
 
+#write.csv(returns,"./Data/returns_test.csv",row.names = FALSE)
 
+r_on <- returns[returns$Time=="09:31:00",]$rs
 r1 <- returns[returns$Time == "10:00:00",]$rs
 r2 <- returns[returns$Time == "10:30:00",]$rs
 r3 <- returns[returns$Time == "11:00:00",]$rs
@@ -63,7 +69,7 @@ r13_lag <- lag(r13) # previous day last 30 minutes return
 
 date <- returns[returns$Time == "16:00:00",]["date"]
 
-rs <- cbind(date,r13_lag, r1, r2,r3,r4,r5,r6,r7,r8,r9,r10,r11,r12,r13)
+rs <- cbind(date,r13_lag, r_on, r1, r2,r3,r4,r5,r6,r7,r8,r9,r10,r11,r12,r13)
 rs <- data.frame(rs)
 
 head(rs)
