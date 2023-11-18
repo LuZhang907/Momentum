@@ -24,3 +24,5 @@ summary(both.model)
 
 vif(bwd.model)
 vif(both.model)
+
+
