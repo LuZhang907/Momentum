@@ -87,4 +87,9 @@ dim(returns_all)
 
 write.csv(returns_all,"./Data/rolling_returns.csv",row.names = FALSE)
 
+days <- unique(dat$date)
+missing <- ifelse(days%in%dropdays,1,0)
+missing_days <- data.frame(days, missing)
+head(missing_days)
 
+write.csv(missing_days,"./Data/missing_day_record.csv",row.names = FALSE)
