@@ -6,6 +6,7 @@ library(stringr)
 library(car)
 library(lubridate)
 library(tidyverse)
+library(naniar)
 
 dat <- fread("/Users/luzhang/Desktop/data/SPY.csv")
 dat <- data.frame(dat)
@@ -22,7 +23,8 @@ dat$Time<-as.POSIXct(dat$time,format="%H:%M:%OS", taz="EST")
 dat$time <- NULL
 
 dat$date <- as.Date(dat$Time)
-dat$minutes <- lubridate::hour(dat$Time)*60+lubridate::minute(dat$Time) # minutes since the midnight
+# minutes since the midnight
+dat$minutes <- lubridate::hour(dat$Time)*60+lubridate::minute(dat$Time) 
 
 #head(dat)
 #str(dat)
@@ -80,8 +82,9 @@ rs3 <- rs3 %>% select(date, r13_lag, r_on, r13)
 names(rs3) <- c("date","r_LH_lag","r_on","r_LH")
 head(rs3)
 
-returns <- merge(rst, rs3, by = "date")
-dim(returns)
+returns_all <- merge(rst, rs3, by = "date")
+dim(returns_all)
 
-write.csv(returns,"./Data/rolling_returns.csv",row.names = FALSE)
+write.csv(returns_all,"./Data/rolling_returns.csv",row.names = FALSE)
+
 
