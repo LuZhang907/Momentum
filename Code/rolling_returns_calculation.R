@@ -74,15 +74,15 @@ head(rst)
 rst$date <- data[data$minutes == 605,]$date
 
 # input r_LH_lag, r_on, r_FH(9:31-9:35),and R_LH
-rs3 <- fread("./Data/returns_spy.csv")
-rs3 <- data.frame(rs3)
-head(rs3)
+rs4 <- fread("./Data/returns_spy.csv")
+rs4 <- data.frame(rs4)
+head(rs4)
 
-rs3 <- rs3 %>% select(date, r13_lag, r_on,r1, r13)
-names(rs3) <- c("date","r_LH_lag","r_on","r_FH","r_LH")
-head(rs3)
+rs4 <- rs4 %>% select(date, r13_lag, r_on,r1, r13)
+names(rs4) <- c("date","r_LH_lag","r_on","r_FH","r_LH")
+head(rs4)
 
-returns_all <- merge(rst, rs3, by = "date")
+returns_all <- merge(rst, rs4, by = "date")
 dim(returns_all)
 
 write.csv(returns_all,"./Data/rolling_returns.csv",row.names = FALSE)
