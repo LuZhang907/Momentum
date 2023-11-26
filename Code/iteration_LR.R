@@ -55,7 +55,7 @@ head(r2)
 plot(r2$V1,type="l")
 plot(r2$V2,type="l")
 
-coef$r2 <- r2$V1
-coef$adjr2 <- r2$V2
+coef$R2 <- r2$V1
+coef$adjR2 <- r2$V2
 
-fwrite(coef, "./Data/iter_coefs.csv")
+#fwrite(coef, "./Data/iter_coefs.csv")
