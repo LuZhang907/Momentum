@@ -5,8 +5,11 @@ library(dplyr)
 library(stringr)
 library(car)
 library(lubridate)
+library(wavethresh)
+library(wavelets)
 
-dat <- fread("/Users/luzhang/Desktop/minutes_data_used_in_paper/AMZN.csv")
+
+dat <- fread("/Users/luzhang/Desktop/data/SPY.csv")
 dat <- data.frame(dat)
 
 dat$date <- as.Date(dat$time)
@@ -22,7 +25,6 @@ keeps <- c("09:31:00","10:00:00","10:30:00","11:00:00","11:30:00","12:00:00",
 keepsdat <- dat[dat$Time %in% keeps,]
 head(keepsdat)
 dim(keepsdat)
-tail(keepsdat)
 
 # count total time points per day
 daypoints <- keepsdat %>% 
@@ -73,8 +75,15 @@ date <- returns[returns$Time == "16:00:00",]["date"]
 rs <- cbind(date,r13_lag, r_on, r1, r2,r3,r4,r5,r6,r7,r8,r9,r10,r11,r12,r13)
 rs <- data.frame(rs)
 
+test <- dwt(rs$r1,filter = "d4", n.levels = 1 )
+test <- wd(rs$r1)
+thres <- threshold(test,levels = 1, policy = "BayesThresh")
 head(rs)
 tail(rs)
 dim(rs)
 
-write.csv(rs,"./Data/returns_AMZN.csv",row.names = FALSE)
+x <- dat[1:100,]$close
+test <- dwt(dat[1:100,]$close, filter = "d4", n.levels = 1)
+test <- data.frame(test)
+
+write.csv(rs,"./Data/returns_spy.csv",row.names = FALSE)

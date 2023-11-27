@@ -1,15 +1,14 @@
+rm(list = setdiff(ls(),lsf.str()))
 library(data.table)
 library(Rcpp)
 library(tidyr)
 sourceCpp("./Code/iteration_matrix_generating.cpp", verbose = F, rebuild = T)
 
-dat <- fread("./Data/returns_spy.csv")
+dat <- fread("./Data/returns_SPY.csv")
 dat <- data.frame(dat)
 dat <- dat %>% drop_na()
 head(dat)
 dim(dat)
-
-
 
 r1_mat <- iter_r1(dat,window = 360)
 r2_mat <- iter_r2(dat,window = 360)
