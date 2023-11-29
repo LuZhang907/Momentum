@@ -259,3 +259,106 @@ NumericMatrix iter_r_on(Rcpp::DataFrame dat, int window){
   return r_on_matrix;
 }
 
+// [[Rcpp::export]]
+NumericMatrix iter_r_onfh(Rcpp::DataFrame dat, int window){
+  NumericVector r_onfh = dat["r_onfh"];
+  int n = r_onfh.length();
+  NumericMatrix r_onfh_matrix(n-window+1,n);
+  for( int i=0; i< n-window+1;i++){
+    for(int j=0;j<n; j++){
+      if(j < i+window){
+        r_onfh_matrix(i,j) = r_onfh[j];
+      }else{
+        r_onfh_matrix(i,j) = 999;
+      }
+    }
+  }
+  return r_onfh_matrix;
+}
+
+// pca variables
+// [[Rcpp::export]]
+NumericMatrix iter_dim1(Rcpp::DataFrame dat, int window){
+  NumericVector dim1 = dat["dim1"];
+  int n = dim1.length();
+  NumericMatrix dim1_matrix(n-window+1,n);
+  for( int i=0; i< n-window+1;i++){
+    for(int j=0;j<n; j++){
+      if(j < i+window){
+        dim1_matrix(i,j) = dim1[j];
+      }else{
+        dim1_matrix(i,j) = 999;
+      }
+    }
+  }
+  return dim1_matrix;
+}
+
+// [[Rcpp::export]]
+NumericMatrix iter_dim2(Rcpp::DataFrame dat, int window){
+  NumericVector dim2 = dat["dim2"];
+  int n = dim2.length();
+  NumericMatrix dim2_matrix(n-window+1,n);
+  for( int i=0; i< n-window+1;i++){
+    for(int j=0;j<n; j++){
+      if(j < i+window){
+        dim2_matrix(i,j) = dim2[j];
+      }else{
+        dim2_matrix(i,j) = 999;
+      }
+    }
+  }
+  return dim2_matrix;
+}
+
+// [[Rcpp::export]]
+NumericMatrix iter_dim3(Rcpp::DataFrame dat, int window){
+  NumericVector dim3 = dat["dim3"];
+  int n = dim3.length();
+  NumericMatrix dim3_matrix(n-window+1,n);
+  for( int i=0; i< n-window+1;i++){
+    for(int j=0;j<n; j++){
+      if(j < i+window){
+        dim3_matrix(i,j) = dim3[j];
+      }else{
+        dim3_matrix(i,j) = 999;
+      }
+    }
+  }
+  return dim3_matrix;
+}
+
+// [[Rcpp::export]]
+NumericMatrix iter_dim4(Rcpp::DataFrame dat, int window){
+  NumericVector dim4 = dat["dim4"];
+  int n = dim4.length();
+  NumericMatrix dim4_matrix(n-window+1,n);
+  for( int i=0; i< n-window+1;i++){
+    for(int j=0;j<n; j++){
+      if(j < i+window){
+        dim4_matrix(i,j) = dim4[j];
+      }else{
+        dim4_matrix(i,j) = 999;
+      }
+    }
+  }
+  return dim4_matrix;
+}
+
+// [[Rcpp::export]]
+NumericMatrix iter_dim5(Rcpp::DataFrame dat, int window){
+  NumericVector dim5 = dat["dim5"];
+  int n = dim5.length();
+  NumericMatrix dim5_matrix(n-window+1,n);
+  for( int i=0; i< n-window+1;i++){
+    for(int j=0;j<n; j++){
+      if(j < i+window){
+        dim5_matrix(i,j) = dim5[j];
+      }else{
+        dim5_matrix(i,j) = 999;
+      }
+    }
+  }
+  return dim5_matrix;
+}
+
