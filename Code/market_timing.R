@@ -3,6 +3,7 @@ library(data.table)
 library(tidyr)
 library(car)
 library(Rcpp)
+library(moments)
 
 dat <- fread("./Data/returns_Gao_SPY.csv")
 dat <- data.frame(dat)
@@ -43,17 +44,20 @@ dat$buyandhold <- dat$r_daily
 
 dat$date <- NULL
 
-sapply(dat, function(x) c("avg ret" = round(mean(x)*100,4),
-                          "stand dev" = round(sd(x)*100,4)
-                        ))
-
-
 
 #new strategy with PCA
 library(PCAmixdata)
 vars <- dat[,c("r13_lag","r_on","r3","r7","r12")]
 pcamix <- PCAmix(X.quanti=vars,  ndim=5)
 plot(pcamix$eig[,1]) # choose above ndim based on this plot
+
+
+
+
+plot(pcamix, choice="cor", main="Numerical variables")
+plot(pcamix, choice="cor", main="Numerical variables",axes = c(1,3))
+plot(pcamix, choice="cor", main="Numerical variables",axes = c(2,3))
+
 
 pcamixs <- pcamix$ind$coord
 pcamixs <- data.frame(pcamixs)
@@ -111,5 +115,12 @@ dat$etadim3 <- ifelse(pcamixs$dim3>0, pcamixs$r13, -pcamixs$r13)
 
 dat$etadim23 <- ifelse(pcamixs$dim2>0 & pcamixs$dim3>0, pcamixs$r13, 
                      ifelse(pcamixs$dim2<0 & pcamixs$dim3<0, -pcamixs$r13, 0))
-colMeans(dat)
+
+sapply(dat, function(x) c("avg ret" = round(mean(x)*100,4),
+                          "stand dev" = round(sd(x)*100,4),
+                          "skewness" = round(skewness(x),4),
+                          "kurtosis" = round(kurtosis(x),4),
+                          "success" = round(length(x[x>=0])/dim(dat)[1]*100,2)
+))
+
 
