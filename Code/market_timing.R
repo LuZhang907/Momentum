@@ -55,9 +55,13 @@ plot(pcamix$eig[,1]) # choose above ndim based on this plot
 
 
 plot(pcamix, choice="cor", main="Numerical variables")
-plot(pcamix, choice="cor", main="Numerical variables",axes = c(1,3))
-plot(pcamix, choice="cor", main="Numerical variables",axes = c(2,3))
 
+pdf("./images/pca_vis_SPY.pdf", 12,4)
+par(mfrow = c(1,3))
+plot(pcamix, choice="cor",main="",axes = c(1,2))
+plot(pcamix, choice="cor",main="",axes = c(1,3))
+plot(pcamix, choice="cor", main="",axes = c(2,3))
+dev.off()
 
 pcamixs <- pcamix$ind$coord
 pcamixs <- data.frame(pcamixs)
@@ -121,6 +125,14 @@ sapply(dat, function(x) c("avg ret" = round(mean(x)*100,4),
                           "skewness" = round(skewness(x),4),
                           "kurtosis" = round(kurtosis(x),4),
                           "success" = round(length(x[x>=0])/dim(dat)[1]*100,2)
+                          
 ))
+
+# newey west t test
+library(sandwich)
+library(lmtest)
+fit <- lm(dat$etadim23~1)
+NeweyWest(fit)
+coeftest(fit, vcov = NeweyWest(fit))
 
 
