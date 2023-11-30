@@ -42,6 +42,7 @@ dat$etalag12 <- ifelse(dat$r12>0 & dat$r13_lag<0, dat$r13,
 dat$alwayslong <- dat$r13
 dat$buyandhold <- dat$r_daily
 
+date_ <- dat$date
 dat$date <- NULL
 
 
@@ -128,10 +129,12 @@ sapply(dat, function(x) c("avg ret" = round(mean(x)*100,4),
                           
 ))
 
+#dat$date <- date_
+#fwrite(dat, "./Data/market_timing_vis_data.csv")
 # newey west t test
 library(sandwich)
 library(lmtest)
-fit <- lm(dat$etadim23~1)
+fit <- lm(dat$buyandhold~1)
 NeweyWest(fit)
 coeftest(fit, vcov = NeweyWest(fit))
 
