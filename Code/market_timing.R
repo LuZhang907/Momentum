@@ -42,6 +42,8 @@ dat$etalag12 <- ifelse(dat$r12>0 & dat$r13_lag<0, dat$r13,
 dat$alwayslong <- dat$r13
 dat$buyandhold <- dat$r_daily
 
+dat$etalagon12 <- ifelse(dat$r13_lag<0 & dat$r_on>0 & dat$r12 >0, dat$r13, -dat$r13)
+
 date_ <- dat$date
 dat$date <- NULL
 
@@ -57,12 +59,12 @@ plot(pcamix$eig[,1]) # choose above ndim based on this plot
 
 plot(pcamix, choice="cor", main="Numerical variables")
 
-pdf("./images/pca_vis_SPY.pdf", 12,4)
-par(mfrow = c(1,3))
-plot(pcamix, choice="cor",main="",axes = c(1,2))
-plot(pcamix, choice="cor",main="",axes = c(1,3))
-plot(pcamix, choice="cor", main="",axes = c(2,3))
-dev.off()
+#pdf("./images/pca_vis_SPY.pdf", 12,4)
+#par(mfrow = c(1,3))
+#plot(pcamix, choice="cor",main="",axes = c(1,2))
+#plot(pcamix, choice="cor",main="",axes = c(1,3))
+#plot(pcamix, choice="cor", main="",axes = c(2,3))
+#dev.off()
 
 pcamixs <- pcamix$ind$coord
 pcamixs <- data.frame(pcamixs)
@@ -97,19 +99,17 @@ tvalues <- as.data.frame(do.call(rbind, tvalues_))
 names(tvalues) <- c("intercept","dim1","dim2","dim3","dim4","dim5")
 head(tvalues)
 
-fwrite(tvalues, "./Data/tvalues_pca_seqrolling_500_SPY.csv")
+#fwrite(tvalues, "./Data/tvalues_pca_seqrolling_500_SPY.csv")
 
 # visualization
-pdf("./images/tvalues_seqrolling_pca_500_SPY.pdf", 12,4)
-par(mfrow = c(1,5))
-plot(tvalues$dim1, type="l", xaxt = "n", xlab = "", ylab="dim1")
-plot(tvalues$dim2, type="l", xaxt = "n", xlab = "", ylab="dim2")
-plot(tvalues$dim3, type="l", xaxt = "n", xlab = "", ylab="dim3")
-plot(tvalues$dim4, type="l", xaxt = "n", xlab = "", ylab="dim4")
-plot(tvalues$dim5, type="l", xaxt = "n", xlab = "", ylab="dim5")
-
-
-dev.off()
+#pdf("./images/tvalues_seqrolling_pca_500_SPY.pdf", 12,4)
+#par(mfrow = c(1,5))
+#plot(tvalues$dim1, type="l", xaxt = "n", xlab = "", ylab="dim1")
+#plot(tvalues$dim2, type="l", xaxt = "n", xlab = "", ylab="dim2")
+#plot(tvalues$dim3, type="l", xaxt = "n", xlab = "", ylab="dim3")
+#plot(tvalues$dim4, type="l", xaxt = "n", xlab = "", ylab="dim4")
+#plot(tvalues$dim5, type="l", xaxt = "n", xlab = "", ylab="dim5")
+#dev.off()
 
 
 # market timing based on dim1, dim2 and dim3
@@ -134,7 +134,7 @@ sapply(dat, function(x) c("avg ret" = round(mean(x)*100,4),
 # newey west t test
 library(sandwich)
 library(lmtest)
-fit <- lm(dat$buyandhold~1)
+fit <- lm(dat$etalagon12~1)
 NeweyWest(fit)
 coeftest(fit, vcov = NeweyWest(fit))
 
