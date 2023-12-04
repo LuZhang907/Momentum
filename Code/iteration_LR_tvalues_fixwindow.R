@@ -7,7 +7,7 @@ library(dplyr)
 
 sourceCpp("./Code/iteration_matrix_generating.cpp", verbose = F, rebuild = T)
 
-dat <- fread("./Data/returns_QQQ.csv")
+dat <- fread("./Data/returns_SPY.csv")
 dat <- data.frame(dat)
 dat <- dat %>% drop_na()
 head(dat)
@@ -45,7 +45,7 @@ summaries <- lapply(my_lms, summary)
 #t values:
 tvalues_ <- lapply(summaries, function(x) x$coefficients[, "t value"])
 tvalues <- as.data.frame(do.call(rbind, tvalues_))
-names(tvalues) <- c("intercept","r13_lag","r_on","r1","r2","r3","r4","r5","r6","r7","r8","r9","r10","r11","r12")
+names(tvalues) <- c("intercept","b13_lag","b_on","b1","b2","b3","b4","b5","b6","b7","b8","b9","b10","b11","b12")
 head(tvalues)
 
 # t critical value when p=0.05, df = n-15
@@ -57,92 +57,81 @@ tvalues$date <- as.Date(date)
 tvalues$year <- format(tvalues$date, "%Y")
 head(tvalues)
 
-fwrite(tvalues, "./Data/tvalues_500_QQQ.csv")
+fwrite(tvalues, "./Data/tvalues_500_SPY.csv")
 
 # visualization
-pdf("./images/r13_lag_on_1_tvalues_QQQ.pdf", 6,6)
-par(mfrow = c(3,1))
-plot(tvalues$r13_lag, type="l", xaxt = "n", xlab = "", ylab="r13_lag")
+pdf("./images/tvalues_fixwondown_500_SPY.pdf", 20,15)
+par(mfrow = c(3,5))
+plot(tvalues$b13_lag, type="l", xaxt = "n", xlab = "", ylab="r13_lag")
 axis(1, c(0,500,1000,1500,2000),seq(2009,2017,2))
 abline(h=1.96, col="red", lty=2)
 abline(h=-1.96, col = "red",lty=2)
 
-plot(tvalues$r_on, type="l", xaxt = "n", xlab = "", ylab="r_on")
+plot(tvalues$b_on, type="l", xaxt = "n", xlab = "", ylab="r_on")
 axis(1, c(0,500,1000,1500,2000),seq(2009,2017,2))
 abline(h=1.96, col="red", lty=2)
 abline(h=-1.96, col = "red",lty=2)
 
-plot(tvalues$r1, type="l", xaxt = "n", xlab = "", ylab="r1")
-axis(1, c(0,500,1000,1500,2000),seq(2009,2017,2))
-abline(h=1.96, col="red", lty=2)
-abline(h=-1.96, col = "red",lty=2)
-dev.off()
-
-pdf("./images/r234_tvalues_QQQ.pdf", 6,6)
-par(mfrow = c(3,1))
-plot(tvalues$r2, type="l", xaxt = "n", xlab = "", ylab="r2")
+plot(tvalues$b1, type="l", xaxt = "n", xlab = "", ylab="r1")
 axis(1, c(0,500,1000,1500,2000),seq(2009,2017,2))
 abline(h=1.96, col="red", lty=2)
 abline(h=-1.96, col = "red",lty=2)
 
-plot(tvalues$r3, type="l", xaxt = "n", xlab = "", ylab="r3")
+plot(tvalues$b2, type="l", xaxt = "n", xlab = "", ylab="r2")
 axis(1, c(0,500,1000,1500,2000),seq(2009,2017,2))
 abline(h=1.96, col="red", lty=2)
 abline(h=-1.96, col = "red",lty=2)
 
-plot(tvalues$r4, type="l", xaxt = "n", xlab = "", ylab="r4")
-axis(1, c(0,500,1000,1500,2000),seq(2009,2017,2))
-abline(h=1.96, col="red", lty=2)
-abline(h=-1.96, col = "red",lty=2)
-dev.off()
-
-
-pdf("./images/r567_tvalues_QQQ.pdf", 6,6)
-par(mfrow = c(3,1))
-plot(tvalues$r5, type="l", xaxt = "n", xlab = "", ylab="r5")
+plot(tvalues$b3, type="l", xaxt = "n", xlab = "", ylab="r3")
 axis(1, c(0,500,1000,1500,2000),seq(2009,2017,2))
 abline(h=1.96, col="red", lty=2)
 abline(h=-1.96, col = "red",lty=2)
 
-plot(tvalues$r6, type="l", xaxt = "n", xlab = "", ylab="r6")
+plot(tvalues$b4, type="l", xaxt = "n", xlab = "", ylab="r4")
 axis(1, c(0,500,1000,1500,2000),seq(2009,2017,2))
 abline(h=1.96, col="red", lty=2)
 abline(h=-1.96, col = "red",lty=2)
 
-plot(tvalues$r7, type="l", xaxt = "n", xlab = "", ylab="r7")
-axis(1, c(0,500,1000,1500,2000),seq(2009,2017,2))
-abline(h=1.96, col="red", lty=2)
-abline(h=-1.96, col = "red",lty=2)
-dev.off()
-
-pdf("./images/r8710_tvalues_QQQ.pdf", 6,6)
-par(mfrow = c(3,1))
-plot(tvalues$r8, type="l", xaxt = "n", xlab = "", ylab="r8")
+plot(tvalues$b5, type="l", xaxt = "n", xlab = "", ylab="r5")
 axis(1, c(0,500,1000,1500,2000),seq(2009,2017,2))
 abline(h=1.96, col="red", lty=2)
 abline(h=-1.96, col = "red",lty=2)
 
-plot(tvalues$r9, type="l", xaxt = "n", xlab = "", ylab="r9")
+plot(tvalues$b6, type="l", xaxt = "n", xlab = "", ylab="r6")
 axis(1, c(0,500,1000,1500,2000),seq(2009,2017,2))
 abline(h=1.96, col="red", lty=2)
 abline(h=-1.96, col = "red",lty=2)
 
-plot(tvalues$r10, type="l", xaxt = "n", xlab = "", ylab="r10")
-axis(1, c(0,500,1000,1500,2000),seq(2009,2017,2))
-abline(h=1.96, col="red", lty=2)
-abline(h=-1.96, col = "red",lty=2)
-dev.off()
-
-pdf("./images/r1112_tvalues_QQQ.pdf", 6,6)
-par(mfrow = c(3,1))
-plot(tvalues$r11, type="l", xaxt = "n", xlab = "", ylab="r11")
+plot(tvalues$b7, type="l", xaxt = "n", xlab = "", ylab="r7")
 axis(1, c(0,500,1000,1500,2000),seq(2009,2017,2))
 abline(h=1.96, col="red", lty=2)
 abline(h=-1.96, col = "red",lty=2)
 
-plot(tvalues$r12, type="l", xaxt = "n", xlab = "", ylab="r12")
+plot(tvalues$b8, type="l", xaxt = "n", xlab = "", ylab="r8")
+axis(1, c(0,500,1000,1500,2000),seq(2009,2017,2))
+abline(h=1.96, col="red", lty=2)
+abline(h=-1.96, col = "red",lty=2)
+
+plot(tvalues$b9, type="l", xaxt = "n", xlab = "", ylab="r9")
+axis(1, c(0,500,1000,1500,2000),seq(2009,2017,2))
+abline(h=1.96, col="red", lty=2)
+abline(h=-1.96, col = "red",lty=2)
+
+plot(tvalues$b10, type="l", xaxt = "n", xlab = "", ylab="r10")
+axis(1, c(0,500,1000,1500,2000),seq(2009,2017,2))
+abline(h=1.96, col="red", lty=2)
+abline(h=-1.96, col = "red",lty=2)
+
+
+plot(tvalues$b11, type="l", xaxt = "n", xlab = "", ylab="r11")
+axis(1, c(0,500,1000,1500,2000),seq(2009,2017,2))
+abline(h=1.96, col="red", lty=2)
+abline(h=-1.96, col = "red",lty=2)
+
+plot(tvalues$b12, type="l", xaxt = "n", xlab = "", ylab="r12")
 axis(1, c(0,500,1000,1500,2000),seq(2009,2017,2))
 abline(h=1.96, col="red", lty=2)
 abline(h=-1.96, col = "red",lty=2)
 
 dev.off()
+
