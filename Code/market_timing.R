@@ -18,6 +18,8 @@ dim(r_buyandhold)
 dat <- merge(dat, r_buyandhold, by = "date")
 dim(dat)
 head(dat)
+
+#fwrite(dat,"./Data/market_timing_data.csv")
 dat$etaonfh <- ifelse(dat$r_onfh>0, dat$r13, -dat$r13)
 dat$etaonfh12 <- ifelse(dat$r_onfh>0 & dat$r12>0, dat$r13, 
                      ifelse(dat$r_onfh<0 & dat$r12<0, -dat$r13, 0))
@@ -42,7 +44,12 @@ dat$etalag12 <- ifelse(dat$r12>0 & dat$r13_lag<0, dat$r13,
 dat$alwayslong <- dat$r13
 dat$buyandhold <- dat$r_daily
 
-dat$etalagon12 <- ifelse(dat$r13_lag<0 & dat$r_on>0 & dat$r12 >0, dat$r13, -dat$r13)
+dat$etalagon12 <- ifelse(dat$r13_lag<0 & dat$r_on>0 & dat$r12 >0, dat$r13, 
+                         ifelse(dat$r13_lag>0 & dat$r_on<0 & dat$r12 <0,-dat$r13, 0))
+
+dat$eta1011 <- ifelse(dat$r10>0 & dat$r11 >0, dat$r13, 
+                      ifelse(dat$r10<0 & dat$r11 < 0, -dat$r13,0))
+
 
 date_ <- dat$date
 dat$date <- NULL
@@ -128,6 +135,7 @@ sapply(dat, function(x) c("avg ret" = round(mean(x)*100,4),
                           "success" = round(length(x[x>=0])/dim(dat)[1]*100,2)
                           
 ))
+
 
 #dat$date <- date_
 #fwrite(dat, "./Data/market_timing_vis_data.csv")
