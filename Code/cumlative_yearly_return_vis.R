@@ -45,21 +45,23 @@ cum_on12 <- cumRet_calculation(dat$d_on12,dat$r13)
 cum_lag <- cumRet_calculation(dat$d_lag,dat$r13)
 cum_lagon <- cumRet_calculation(dat$d_lagon,dat$r13)
 cum_lag12 <- cumRet_calculation(dat$d_lag12,dat$r13)
-#cum_10 <- cumRet_calculation(dat$d_10,dat$r13)
-#cum_11 <- cumRet_calculation(dat$d_11,dat$r13)
+cum_10 <- cumRet_calculation(dat$d_10,dat$r13)
+cum_11 <- cumRet_calculation(dat$d_11,dat$r13)
 cum_1011 <- cumRet_calculation(dat$d_1011,dat$r13)
 
 cum_alwayslong <- cumRet_benchmark(dat$r13)
 cum_buyandhold <- cumRet_benchmark(dat$r_daily)
 
 
-pdf("./images/cumRet_returns_SPY.pdf", 10,8)
+pdf("./images/cumRet_returns_SPY.pdf", 9,6)
 plot(cum_on, ylim = c(-0.5,1.5),xlim=c(0,3400),
      col = "blue", type = "l", lwd = 2, xaxt="n",
      ylab = "Cumulative Return",xlab = "")
 lines(cum_onfh, col="#009999", lwd=2)
 lines(cum_12, col = "green", lwd = 2)
 lines(cum_lag, col = "#FF6600", lwd = 2)
+lines(cum_10, col="#CC6666",lwd=2)
+lines(cum_11, col = "#CC3999",lwd=2)
 
 lines(cum_onfh12, col="#99CCFF", lwd =2)
 lines(cum_on12, col = "#0099CC", lwd=2)
@@ -70,11 +72,13 @@ lines(cum_1011, col="black",lwd=2)
 lines(cum_alwayslong, col="red", lwd = 2)
 lines(cum_buyandhold, col="grey", lwd =2)
 
-legend(2800,0.8,
+legend(2800,1.1,
        legend=c(expression(eta(r[on])), 
                 expression(eta(r[onfh])),
                 expression(eta(r[12])),
                 expression(eta(r[lag])),
+                expression(eta(r[10])),
+                expression(eta(r[11])),
                 expression(eta(r[onfh],r[12])),
                 expression(eta(r[on],r[12])),
                 expression(eta(r[lag],r[12])),
@@ -82,19 +86,19 @@ legend(2800,0.8,
                 expression(eta(r[10],r[11])),
                 "alwayslong",
                 "buy-and-hold"),
-       col=c("blue", "#009999","green","#FF6600",
+       col=c("blue", "#009999","green","#FF6600","#CC6666","#CC3999",
              "#99CCFF","#0099CC","#336699","#660000","black",
              "red","grey"
              ), 
-       lty=c(1,1,1,1,1,1,1,1,1,1,1),
-       lwd=c(2,2,2,2,2,2,2,2,2,2,2),cex=0.8)
+       lty=c(1,1,1,1,1,1,1,1,1,1,1,1,1),
+       lwd=c(2,2,2,2,2,2,2,2,2,2,2,2,2),cex=0.8)
 
 axis(side = 1, at = seq(0,2500,500),labels = c("2007","2009","2011","2013","2015","2017") )
 dev.off()
 
 
 cumRet <- data.frame(cum_onfh, cum_on, cum_12, cum_on12,cum_onfh12,
-                     cum_lag, cum_lagon, cum_lag12, cum_1011,
+                     cum_lag, cum_lagon, cum_lag12, cum_1011,cum_10,cum_11,
                      cum_alwayslong, cum_buyandhold, dat$year)
 
 yearRet <- cumRet %>% 
@@ -217,7 +221,23 @@ legend("topleft", legend=c("buyandhold", "alwayslong"),
 dev.off()
 
 
+pdf("./images/yearly_returns_10.pdf", 5,4)
+plot(yearRet$dat.year, yearRet$cum_10, type = "b", frame = FALSE, pch = 19, lwd=2,
+     col = "blue", xlab = "", ylab = "Yearly return", ylim = c(-0.25,1.5))
+# Add a second line
+lines(yearRet$dat.year, yearRet$cum_alwayslong, pch = 19, col = "black", type = "b", lwd=2)
+# Add a legend to the plot
+legend("topleft", legend=c(expression(eta(r[10])), "alwayslong"),
+       col=c("blue", "black"),lwd = c(2,2),pch=c(19,19),cex=0.8)
+dev.off()
 
-
-
+pdf("./images/yearly_returns_11.pdf", 5,4)
+plot(yearRet$dat.year, yearRet$cum_11, type = "b", frame = FALSE, pch = 19, lwd=2,
+     col = "blue", xlab = "", ylab = "Yearly return", ylim = c(-0.25,1.5))
+# Add a second line
+lines(yearRet$dat.year, yearRet$cum_alwayslong, pch = 19, col = "black", type = "b", lwd=2)
+# Add a legend to the plot
+legend("topleft", legend=c(expression(eta(r[11])), "alwayslong"),
+       col=c("blue", "black"),lwd = c(2,2),pch=c(19,19),cex=0.8)
+dev.off()
 
