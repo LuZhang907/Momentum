@@ -185,6 +185,19 @@ NumericMatrix iter_r_on(Rcpp::DataFrame dat, int window){
 }
 
 // [[Rcpp::export]]
+NumericMatrix iter_r_onfh(Rcpp::DataFrame dat, int window){
+  NumericVector r_onfh = dat["r_onfh"];
+  int n = r_onfh.length();
+  NumericMatrix r_onfh_matrix(n-window+1,window);
+  for( int i=0; i< n-window+1;i++){
+    for(int j=0;j<window; j++){
+      r_onfh_matrix(i,j) = r_onfh[i+j];
+    }
+  }
+  return r_onfh_matrix;
+}
+
+// [[Rcpp::export]]
 NumericMatrix iter_r13_lag(Rcpp::DataFrame dat, int window){
   NumericVector r13_lag = dat["r13_lag"];
   int n = r13_lag.length();
@@ -196,3 +209,28 @@ NumericMatrix iter_r13_lag(Rcpp::DataFrame dat, int window){
   }
   return r13_lag_matrix;
 }
+
+//[[Rcpp::export]]
+NumericVector cumRet_calculation(NumericVector direction, NumericVector returns){
+  int n = direction.length();
+  Rcpp::NumericVector cumRet(n);
+  double results = 1.0;
+  for(int i=0;i<n;i++){
+    results = results*(1+returns(i)*direction(i));
+    cumRet(i) = results-1;
+  }
+  return cumRet;
+}
+
+//[[Rcpp::export]]
+NumericVector cumRet_benchmark(NumericVector returns){
+  int n = returns.length();
+  Rcpp::NumericVector cumRet(n);
+  double results = 1.0;
+  for(int i=0;i<n;i++){
+    results = results*(1+returns(i));
+    cumRet(i) = results-1;
+  }
+  return cumRet;
+}
+

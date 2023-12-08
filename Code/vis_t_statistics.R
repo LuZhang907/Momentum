@@ -11,8 +11,8 @@ plot(tvalues$b13_lag, type="l", xaxt = "n", xlab = "", ylab="", lwd=2, ylim=c(-7
 axis(1, c(0,500,1000,1500,2000),seq(2009,2017,2))
 abline(h=1.96, col="red", lty=2)
 abline(h=-1.96, col = "red",lty=2)
-legend("topleft", legend=c(expression(t[r[lag]])),
-       lwd = 2, cex=0.8)
+legend("topleft", legend=expression(t(r[lag])),
+       lwd = 2, cex=1.2)
 dev.off()
 
 pdf("./images/tvalues_on_SPY.pdf", 5,4)
@@ -20,8 +20,8 @@ plot(tvalues$b_on, type="l", xaxt = "n", xlab = "", ylab="", lwd=2, ylim=c(-7,7)
 axis(1, c(0,500,1000,1500,2000),seq(2009,2017,2))
 abline(h=1.96, col="red", lty=2)
 abline(h=-1.96, col = "red",lty=2)
-legend("topright", legend=c(expression(t[r[on]])),
-       lwd = 2, cex=0.8)
+legend("topright", legend=c(expression(t(r[on]))),
+       lwd = 2, cex=1.2)
 dev.off()
 
 pdf("./images/tvalues_1_SPY.pdf", 5,4)
@@ -29,8 +29,8 @@ plot(tvalues$b1, type="l", xaxt = "n", xlab = "", ylab="", lwd=2,ylim=c(-7,7))
 axis(1, c(0,500,1000,1500,2000),seq(2009,2017,2))
 abline(h=1.96, col="red", lty=2)
 abline(h=-1.96, col = "red",lty=2)
-legend("topleft", legend=c(expression(t[r[1]])),
-       lwd = 2, cex=0.8)
+legend("topleft", legend=c(expression(t(r[1]))),
+       lwd = 2, cex=1.2)
 dev.off()
 
 pdf("./images/tvalues_2_SPY.pdf", 5,4)
@@ -38,8 +38,8 @@ plot(tvalues$b2, type="l", xaxt = "n", xlab = "", ylab="", lwd=2,ylim=c(-7,7))
 axis(1, c(0,500,1000,1500,2000),seq(2009,2017,2))
 abline(h=1.96, col="red", lty=2)
 abline(h=-1.96, col = "red",lty=2)
-legend("topleft", legend=c(expression(t[r[2]])),
-       lwd = 2, cex=0.8)
+legend("topleft", legend=c(expression(t(r[2]))),
+       lwd = 2, cex=1.2)
 dev.off()
 
 pdf("./images/tvalues_3_SPY.pdf", 5,4)
@@ -47,8 +47,8 @@ plot(tvalues$b3, type="l", xaxt = "n", xlab = "", ylab="", lwd=2,ylim=c(-7,7))
 axis(1, c(0,500,1000,1500,2000),seq(2009,2017,2))
 abline(h=1.96, col="red", lty=2)
 abline(h=-1.96, col = "red",lty=2)
-legend("topright", legend=c(expression(t[r[3]])),
-       lwd = 2, cex=0.8)
+legend("topright", legend=c(expression(t(r[3]))),
+       lwd = 2, cex=1.2)
 dev.off()
 
 pdf("./images/tvalues_4_SPY.pdf", 5,4)
@@ -56,8 +56,8 @@ plot(tvalues$b4, type="l", xaxt = "n", xlab = "", ylab="", lwd=2,ylim=c(-7,7))
 axis(1, c(0,500,1000,1500,2000),seq(2009,2017,2))
 abline(h=1.96, col="red", lty=2)
 abline(h=-1.96, col = "red",lty=2)
-legend("topleft", legend=c(expression(t[r[4]])),
-       lwd = 2, cex=0.8)
+legend("topleft", legend=c(expression(t(r[4]))),
+       lwd = 2, cex=1.2)
 dev.off()
 
 pdf("./images/tvalues_5_SPY.pdf", 5,4)
@@ -65,8 +65,8 @@ plot(tvalues$b5, type="l", xaxt = "n", xlab = "", ylab="", lwd=2,ylim=c(-7,7))
 axis(1, c(0,500,1000,1500,2000),seq(2009,2017,2))
 abline(h=1.96, col="red", lty=2)
 abline(h=-1.96, col = "red",lty=2)
-legend("topleft", legend=c(expression(t[r[5]])),
-       lwd = 2, cex=0.8)
+legend("topright", legend=c(expression(t(r[5]))),
+       lwd = 2, cex=1.2)
 dev.off()
 
 pdf("./images/tvalues_6_SPY.pdf", 5,4)
@@ -74,8 +74,8 @@ plot(tvalues$b6, type="l", xaxt = "n", xlab = "", ylab="", lwd=2,ylim=c(-7,7))
 axis(1, c(0,500,1000,1500,2000),seq(2009,2017,2))
 abline(h=1.96, col="red", lty=2)
 abline(h=-1.96, col = "red",lty=2)
-legend("topleft", legend=c(expression(t[r[6]])),
-       lwd = 2, cex=0.8)
+legend("topleft", legend=c(expression(t(r[6]))),
+       lwd = 2, cex=1.2)
 dev.off()
 
 pdf("./images/tvalues_7_SPY.pdf", 5,4)
@@ -83,8 +83,8 @@ plot(tvalues$b7, type="l", xaxt = "n", xlab = "", ylab="", lwd=2,ylim=c(-7,7))
 axis(1, c(0,500,1000,1500,2000),seq(2009,2017,2))
 abline(h=1.96, col="red", lty=2)
 abline(h=-1.96, col = "red",lty=2)
-legend("topleft", legend=c(expression(t[r[7]])),
-       lwd = 2, cex=0.8)
+legend("topleft", legend=c(expression(t(r[7]))),
+       lwd = 2, cex=1.2)
 dev.off()
 
 pdf("./images/tvalues_8_SPY.pdf", 5,4)
@@ -92,8 +92,8 @@ plot(tvalues$b8, type="l", xaxt = "n", xlab = "", ylab="", lwd=2,ylim=c(-7,7))
 axis(1, c(0,500,1000,1500,2000),seq(2009,2017,2))
 abline(h=1.96, col="red", lty=2)
 abline(h=-1.96, col = "red",lty=2)
-legend("topleft", legend=c(expression(t[r[8]])),
-       lwd = 2, cex=0.8)
+legend("topleft", legend=c(expression(t(r[8]))),
+       lwd = 2, cex=1.2)
 dev.off()
 
 pdf("./images/tvalues_9_SPY.pdf", 5,4)
@@ -101,8 +101,8 @@ plot(tvalues$b9, type="l", xaxt = "n", xlab = "", ylab="", lwd=2,ylim=c(-7,7))
 axis(1, c(0,500,1000,1500,2000),seq(2009,2017,2))
 abline(h=1.96, col="red", lty=2)
 abline(h=-1.96, col = "red",lty=2)
-legend("topleft", legend=c(expression(t[r[9]])),
-       lwd = 2, cex=0.8)
+legend("topright", legend=c(expression(t(r[9]))),
+       lwd = 2, cex=1.2)
 dev.off()
 
 pdf("./images/tvalues_10_SPY.pdf", 5,4)
@@ -110,8 +110,8 @@ plot(tvalues$b10, type="l", xaxt = "n", xlab = "", ylab="", lwd=2,ylim=c(-7,7))
 axis(1, c(0,500,1000,1500,2000),seq(2009,2017,2))
 abline(h=1.96, col="red", lty=2)
 abline(h=-1.96, col = "red",lty=2)
-legend("topleft", legend=c(expression(t[r[10]])),
-       lwd = 2, cex=0.8)
+legend("bottomleft", legend=c(expression(t(r[10]))),
+       lwd = 2, cex=1.2)
 dev.off()
 
 
@@ -120,8 +120,8 @@ plot(tvalues$b11, type="l", xaxt = "n", xlab = "", ylab="", lwd=2,ylim=c(-7,7))
 axis(1, c(0,500,1000,1500,2000),seq(2009,2017,2))
 abline(h=1.96, col="red", lty=2)
 abline(h=-1.96, col = "red",lty=2)
-legend("topleft", legend=c(expression(t[r[11]])),
-       lwd = 2, cex=0.8)
+legend("topleft", legend=c(expression(t(r[11]))),
+       lwd = 2, cex=1.2)
 dev.off()
 
 pdf("./images/tvalues_12_SPY.pdf", 5,4)
@@ -129,8 +129,8 @@ plot(tvalues$b12, type="l", xaxt = "n", xlab = "", ylab="", lwd=2,ylim=c(-7,7))
 axis(1, c(0,500,1000,1500,2000),seq(2009,2017,2))
 abline(h=1.96, col="red", lty=2)
 abline(h=-1.96, col = "red",lty=2)
-legend("topleft", legend=c(expression(t[r[12]])),
-       lwd = 2, cex=0.8)
+legend("bottomleft", legend=c(expression(t(r[12]))),
+       lwd = 2, cex=1.2)
 dev.off()
 
 
@@ -149,28 +149,20 @@ dim(dat2)
 tvalues <- dat1
 tvalues$r_onfh <- dat2$r_onfh
 
-pdf("./images/tvalues_seqrolling_vis_spy.pdf", 20,5)
-par(mfrow = c(1,3))
-
-plot(tvalues$r_on, type="l", xaxt = "n", xlab = "", ylab="")
-plot(tvalues$r1, type="l", xaxt = "n", xlab = "", ylab="r1")
-plot(tvalues$r_onfh, type="l", xaxt = "n", xlab = "", ylab="r_onfh")
-
-dev.off()
 
 pdf("./images/tvalues_seqrolling_on_onfh.pdf", 5,4)
 plot(tvalues$r_on, type="l", xaxt = "n", xlab = "", ylab="", 
-     lwd=2, col="blue", ylim = c(4.5,9))
-lines(tvalues$r_onfh, lwd = 2)
+     lwd=2, ylim = c(4.5,9))
+lines(tvalues$r_onfh, lwd = 2, lty=2)
 axis(1, c(0,500,1000,1500,2000),seq(2009,2017,2))
-legend("topleft", legend=c(expression(t[r[on]]), expression(t[r[onfh]])),
-       lwd = c(2,2), cex=0.8)
+legend("topleft", legend=c(expression(t(r[on])), expression(t(r[onfh]))),
+       lwd = c(2,2), lty = c(1,2),cex=1.2)
 dev.off()
 
 pdf("./images/tvalues_seqrolling_1.pdf", 5,4)
 plot(tvalues$r1, type="l", xaxt = "n", xlab = "", ylab="", 
      lwd=2)
 axis(1, c(0,500,1000,1500,2000),seq(2009,2017,2))
-legend("topright", legend=expression(t[r[1]]),
-       lwd = 2, cex=0.8)
+legend("topright", legend=expression(t(r[1])),
+       lwd = 2, cex=1.2)
 dev.off()
