@@ -1,5 +1,6 @@
 #include <Rcpp.h>
 using namespace Rcpp;
+using namespace std;
 
 // [[Rcpp::export]]
 NumericMatrix iter_r1(Rcpp::DataFrame dat, int window){

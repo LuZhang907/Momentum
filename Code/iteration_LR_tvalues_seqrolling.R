@@ -7,7 +7,7 @@ library(dplyr)
 
 sourceCpp("./Code/iteration_matrix_generating_seqrolling.cpp", verbose = F, rebuild = T)
 
-dat <- fread("./Data/returns_QQQ.csv")
+dat <- fread("./Data/returns_SPY.csv")
 dat <- data.frame(dat)
 dat <- dat %>% drop_na()
 head(dat)
@@ -62,10 +62,10 @@ tvalues$date <- as.Date(date)
 tvalues$year <- format(tvalues$date, "%Y")
 head(tvalues)
 
-fwrite(tvalues, "./Data/tvalues_seqrolling_500_QQQ.csv")
+fwrite(tvalues, "./Data/tvalues_seqrolling_500_SPY.csv")
 
 # visualization
-pdf("./images/tvalues_seqrolling_500_QQQ.pdf", 12,10)
+pdf("./images/tvalues_seqrolling_500_SPY.pdf", 12,10)
 par(mfrow = c(3,5))
 plot(tvalues$r13_lag, type="l", ylab="r13_lag", xaxt = "n", xlab = "",)
 plot(tvalues$r_on, type="l", xaxt = "n", xlab = "", ylab="r_on")
