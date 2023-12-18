@@ -1,6 +1,7 @@
 rm(list = setdiff(ls(),lsf.str()))
 library(data.table)
 library(Rcpp)
+library(tidyr)
 
 sourceCpp("./Code/iteration_matrix_generating.cpp", verbose = F, rebuild = T)
 
@@ -85,4 +86,40 @@ my_lmsGeq <- lapply(1:n, function(x) lm(mr13Geq[,x][!mr13Geq[,x]==999] ~
 
 summaries <- lapply(my_lmsGeq, summary)
 
+#r2Geq <- lapply(summaries, function(x) x$r.squared)
+adjR2Geq <- lapply(summaries, function(x) x$adj.r.squared)
+adjR2Geq <- data.frame(as.matrix(adjR2Geq))
+# number of samples greater than certain thereshold
+nsamples <- lapply(1:n, function(x) length(mr13Geq[,x][!mr13Geq[,x]==999]))
+nsamples <- data.frame(as.matrix(nsamples))
 
+
+my_lmsL <- lapply(1:n, function(x) lm(mr13L[,x][!mr13L[,x]==999] ~ 
+                                        mr1L[,x][!mr1L[,x]==999]+
+                                        mr2L[,x][!mr2L[,x]==999]+
+                                        mr3L[,x][!mr3L[,x]==999]+
+                                        mr4L[,x][!mr4L[,x]==999]+
+                                        mr5L[,x][!mr5L[,x]==999]+
+                                        mr6L[,x][!mr6L[,x]==999]+
+                                        mr7L[,x][!mr7L[,x]==999]+
+                                        mr8L[,x][!mr8L[,x]==999]+   
+                                        mr9L[,x][!mr9L[,x]==999]+
+                                        mr10L[,x][!mr10L[,x]==999]+
+                                        mr11L[,x][!mr11L[,x]==999]+
+                                        mr12L[,x][!mr12L[,x]==999]+
+                                        mr13lagL[,x][!mr13lagL[,x]==999]+ 
+                                        mronL[,x][!mronL[,x]==999]
+))
+
+summaries <- lapply(my_lmsL, summary)
+
+#r2L <- lapply(summaries, function(x) x$r.squared)
+adjR2L <- lapply(summaries, function(x) x$adj.r.squared)
+adjR2L <- data.frame(as.matrix(adjR2L))
+# number of samples less than certain thereshold
+nsampleL <- lapply(1:n, function(x) length(mr13L[,x][!mr13L[,x]==999]))
+nsampleL <- data.frame(as.matrix(nsampleL))
+
+output <- data.frame(thres, adjR2Geq, nsamples, adjR2L, nsampleL)
+colnames(output) <- c("threshold","adjR2Geq","#>=","adjR2L", "#<")
+fwrite(output, "./Data/iteration_LR_by_overnight_threshold.csv")
