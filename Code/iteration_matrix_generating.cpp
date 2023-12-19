@@ -791,3 +791,549 @@ NumericMatrix mr13_lag_thresholdGeq(DataFrame dat, NumericVector thres){
   return mr13_lag;
 }
 
+//threshold for volatility return
+// [[Rcpp::export]]
+NumericMatrix mr1_thresVolaL(DataFrame dat, NumericVector thres){
+  NumericVector r1 = dat["r1"];
+  NumericVector rvolatility = dat["volatility"];
+  int n = r1.length();
+  int m = thres.length();
+  NumericMatrix mr1(n,m);
+  for(int i=0;i<n;i++){
+    for(int j=0;j<m;j++){
+      if(rvolatility[i]<thres[j]){
+        mr1(i,j)=r1[i];
+      }else mr1(i,j)=999;
+    }
+  }
+  return mr1;
+}
+
+// [[Rcpp::export]]
+NumericMatrix mr1_thresVolaGeq(DataFrame dat, NumericVector thres){
+  NumericVector r1 = dat["r1"];
+  NumericVector rvolatility = dat["volatility"];
+  int n = r1.length();
+  int m = thres.length();
+  NumericMatrix mr1(n,m);
+  for(int i=0;i<n;i++){
+    for(int j=0;j<m;j++){
+      if(rvolatility[i]>=thres[j]){
+        mr1(i,j)=r1[i];
+      }else mr1(i,j)=999;
+    }
+  }
+  return mr1;
+}
+
+// [[Rcpp::export]]
+NumericMatrix mr2_thresVolaL(DataFrame dat, NumericVector thres){
+  NumericVector r2 = dat["r2"];
+  NumericVector rvolatility = dat["volatility"];
+  int n = r2.length();
+  int m = thres.length();
+  NumericMatrix mr2(n,m);
+  for(int i=0;i<n;i++){
+    for(int j=0;j<m;j++){
+      if(rvolatility[i]<thres[j]){
+        mr2(i,j)=r2[i];
+      }else mr2(i,j)=999;
+    }
+  }
+  return mr2;
+}
+
+// [[Rcpp::export]]
+NumericMatrix mr2_thresVolaGeq(DataFrame dat, NumericVector thres){
+  NumericVector r2 = dat["r2"];
+  NumericVector rvolatility = dat["volatility"];
+  int n = r2.length();
+  int m = thres.length();
+  NumericMatrix mr2(n,m);
+  for(int i=0;i<n;i++){
+    for(int j=0;j<m;j++){
+      if(rvolatility[i]>=thres[j]){
+        mr2(i,j)=r2[i];
+      }else mr2(i,j)=999;
+    }
+  }
+  return mr2;
+}
+
+// [[Rcpp::export]]
+NumericMatrix mr3_thresVolaL(DataFrame dat, NumericVector thres){
+  NumericVector r3 = dat["r3"];
+  NumericVector rvolatility = dat["volatility"];
+  int n = r3.length();
+  int m = thres.length();
+  NumericMatrix mr3(n,m);
+  for(int i=0;i<n;i++){
+    for(int j=0;j<m;j++){
+      if(rvolatility[i]<thres[j]){
+        mr3(i,j)=r3[i];
+      }else mr3(i,j)=999;
+    }
+  }
+  return mr3;
+}
+
+// [[Rcpp::export]]
+NumericMatrix mr3_thresVolaGeq(DataFrame dat, NumericVector thres){
+  NumericVector r3 = dat["r3"];
+  NumericVector rvolatility = dat["volatility"];
+  int n = r3.length();
+  int m = thres.length();
+  NumericMatrix mr3(n,m);
+  for(int i=0;i<n;i++){
+    for(int j=0;j<m;j++){
+      if(rvolatility[i]>=thres[j]){
+        mr3(i,j)=r3[i];
+      }else mr3(i,j)=999;
+    }
+  }
+  return mr3;
+}
+
+// [[Rcpp::export]]
+NumericMatrix mr4_thresVolaL(DataFrame dat, NumericVector thres){
+  NumericVector r4 = dat["r4"];
+  NumericVector rvolatility = dat["volatility"];
+  int n = r4.length();
+  int m = thres.length();
+  NumericMatrix mr4(n,m);
+  for(int i=0;i<n;i++){
+    for(int j=0;j<m;j++){
+      if(rvolatility[i]<thres[j]){
+        mr4(i,j)=r4[i];
+      }else mr4(i,j)=999;
+    }
+  }
+  return mr4;
+}
+
+// [[Rcpp::export]]
+NumericMatrix mr4_thresVolaGeq(DataFrame dat, NumericVector thres){
+  NumericVector r4 = dat["r4"];
+  NumericVector rvolatility = dat["volatility"];
+  int n = r4.length();
+  int m = thres.length();
+  NumericMatrix mr4(n,m);
+  for(int i=0;i<n;i++){
+    for(int j=0;j<m;j++){
+      if(rvolatility[i]>=thres[j]){
+        mr4(i,j)=r4[i];
+      }else mr4(i,j)=999;
+    }
+  }
+  return mr4;
+}
+
+// [[Rcpp::export]]
+NumericMatrix mr5_thresVolaL(DataFrame dat, NumericVector thres){
+  NumericVector r5 = dat["r5"];
+  NumericVector rvolatility = dat["volatility"];
+  int n = r5.length();
+  int m = thres.length();
+  NumericMatrix mr5(n,m);
+  for(int i=0;i<n;i++){
+    for(int j=0;j<m;j++){
+      if(rvolatility[i]<thres[j]){
+        mr5(i,j)=r5[i];
+      }else mr5(i,j)=999;
+    }
+  }
+  return mr5;
+}
+
+// [[Rcpp::export]]
+NumericMatrix mr5_thresVolaGeq(DataFrame dat, NumericVector thres){
+  NumericVector r5 = dat["r5"];
+  NumericVector rvolatility = dat["volatility"];
+  int n = r5.length();
+  int m = thres.length();
+  NumericMatrix mr5(n,m);
+  for(int i=0;i<n;i++){
+    for(int j=0;j<m;j++){
+      if(rvolatility[i]>=thres[j]){
+        mr5(i,j)=r5[i];
+      }else mr5(i,j)=999;
+    }
+  }
+  return mr5;
+}
+
+// [[Rcpp::export]]
+NumericMatrix mr6_thresVolaL(DataFrame dat, NumericVector thres){
+  NumericVector r6 = dat["r6"];
+  NumericVector rvolatility = dat["volatility"];
+  int n = r6.length();
+  int m = thres.length();
+  NumericMatrix mr6(n,m);
+  for(int i=0;i<n;i++){
+    for(int j=0;j<m;j++){
+      if(rvolatility[i]<thres[j]){
+        mr6(i,j)=r6[i];
+      }else mr6(i,j)=999;
+    }
+  }
+  return mr6;
+}
+
+// [[Rcpp::export]]
+NumericMatrix mr6_thresVolaGeq(DataFrame dat, NumericVector thres){
+  NumericVector r6 = dat["r6"];
+  NumericVector rvolatility = dat["volatility"];
+  int n = r6.length();
+  int m = thres.length();
+  NumericMatrix mr6(n,m);
+  for(int i=0;i<n;i++){
+    for(int j=0;j<m;j++){
+      if(rvolatility[i]>=thres[j]){
+        mr6(i,j)=r6[i];
+      }else mr6(i,j)=999;
+    }
+  }
+  return mr6;
+}
+
+
+// [[Rcpp::export]]
+NumericMatrix mr7_thresVolaL(DataFrame dat, NumericVector thres){
+  NumericVector r7 = dat["r7"];
+  NumericVector rvolatility = dat["volatility"];
+  int n = r7.length();
+  int m = thres.length();
+  NumericMatrix mr7(n,m);
+  for(int i=0;i<n;i++){
+    for(int j=0;j<m;j++){
+      if(rvolatility[i]<thres[j]){
+        mr7(i,j)=r7[i];
+      }else mr7(i,j)=999;
+    }
+  }
+  return mr7;
+}
+
+// [[Rcpp::export]]
+NumericMatrix mr7_thresVolaGeq(DataFrame dat, NumericVector thres){
+  NumericVector r7 = dat["r7"];
+  NumericVector rvolatility = dat["volatility"];
+  int n = r7.length();
+  int m = thres.length();
+  NumericMatrix mr7(n,m);
+  for(int i=0;i<n;i++){
+    for(int j=0;j<m;j++){
+      if(rvolatility[i]>=thres[j]){
+        mr7(i,j)=r7[i];
+      }else mr7(i,j)=999;
+    }
+  }
+  return mr7;
+}
+
+// [[Rcpp::export]]
+NumericMatrix mr8_thresVolaL(DataFrame dat, NumericVector thres){
+  NumericVector r8 = dat["r8"];
+  NumericVector rvolatility = dat["volatility"];
+  int n = r8.length();
+  int m = thres.length();
+  NumericMatrix mr8(n,m);
+  for(int i=0;i<n;i++){
+    for(int j=0;j<m;j++){
+      if(rvolatility[i]<thres[j]){
+        mr8(i,j)=r8[i];
+      }else mr8(i,j)=999;
+    }
+  }
+  return mr8;
+}
+
+// [[Rcpp::export]]
+NumericMatrix mr8_thresVolaGeq(DataFrame dat, NumericVector thres){
+  NumericVector r8 = dat["r8"];
+  NumericVector rvolatility = dat["volatility"];
+  int n = r8.length();
+  int m = thres.length();
+  NumericMatrix mr8(n,m);
+  for(int i=0;i<n;i++){
+    for(int j=0;j<m;j++){
+      if(rvolatility[i]>=thres[j]){
+        mr8(i,j)=r8[i];
+      }else mr8(i,j)=999;
+    }
+  }
+  return mr8;
+}
+
+// [[Rcpp::export]]
+NumericMatrix mr9_thresVolaL(DataFrame dat, NumericVector thres){
+  NumericVector r9 = dat["r9"];
+  NumericVector rvolatility = dat["volatility"];
+  int n = r9.length();
+  int m = thres.length();
+  NumericMatrix mr9(n,m);
+  for(int i=0;i<n;i++){
+    for(int j=0;j<m;j++){
+      if(rvolatility[i]<thres[j]){
+        mr9(i,j)=r9[i];
+      }else mr9(i,j)=999;
+    }
+  }
+  return mr9;
+}
+
+// [[Rcpp::export]]
+NumericMatrix mr9_thresVolaGeq(DataFrame dat, NumericVector thres){
+  NumericVector r9 = dat["r9"];
+  NumericVector rvolatility = dat["volatility"];
+  int n = r9.length();
+  int m = thres.length();
+  NumericMatrix mr9(n,m);
+  for(int i=0;i<n;i++){
+    for(int j=0;j<m;j++){
+      if(rvolatility[i]>=thres[j]){
+        mr9(i,j)=r9[i];
+      }else mr9(i,j)=999;
+    }
+  }
+  return mr9;
+}
+
+// [[Rcpp::export]]
+NumericMatrix mr10_thresVolaL(DataFrame dat, NumericVector thres){
+  NumericVector r10 = dat["r10"];
+  NumericVector rvolatility = dat["volatility"];
+  int n = r10.length();
+  int m = thres.length();
+  NumericMatrix mr10(n,m);
+  for(int i=0;i<n;i++){
+    for(int j=0;j<m;j++){
+      if(rvolatility[i]<thres[j]){
+        mr10(i,j)=r10[i];
+      }else mr10(i,j)=999;
+    }
+  }
+  return mr10;
+}
+
+// [[Rcpp::export]]
+NumericMatrix mr10_thresVolaGeq(DataFrame dat, NumericVector thres){
+  NumericVector r10 = dat["r10"];
+  NumericVector rvolatility = dat["volatility"];
+  int n = r10.length();
+  int m = thres.length();
+  NumericMatrix mr10(n,m);
+  for(int i=0;i<n;i++){
+    for(int j=0;j<m;j++){
+      if(rvolatility[i]>=thres[j]){
+        mr10(i,j)=r10[i];
+      }else mr10(i,j)=999;
+    }
+  }
+  return mr10;
+}
+
+// [[Rcpp::export]]
+NumericMatrix mr11_thresVolaL(DataFrame dat, NumericVector thres){
+  NumericVector r11 = dat["r11"];
+  NumericVector rvolatility = dat["volatility"];
+  int n = r11.length();
+  int m = thres.length();
+  NumericMatrix mr11(n,m);
+  for(int i=0;i<n;i++){
+    for(int j=0;j<m;j++){
+      if(rvolatility[i]<thres[j]){
+        mr11(i,j)=r11[i];
+      }else mr11(i,j)=999;
+    }
+  }
+  return mr11;
+}
+
+// [[Rcpp::export]]
+NumericMatrix mr11_thresVolaGeq(DataFrame dat, NumericVector thres){
+  NumericVector r11 = dat["r11"];
+  NumericVector rvolatility = dat["volatility"];
+  int n = r11.length();
+  int m = thres.length();
+  NumericMatrix mr11(n,m);
+  for(int i=0;i<n;i++){
+    for(int j=0;j<m;j++){
+      if(rvolatility[i]>=thres[j]){
+        mr11(i,j)=r11[i];
+      }else mr11(i,j)=999;
+    }
+  }
+  return mr11;
+}
+
+// [[Rcpp::export]]
+NumericMatrix mr12_thresVolaL(DataFrame dat, NumericVector thres){
+  NumericVector r12 = dat["r12"];
+  NumericVector rvolatility = dat["volatility"];
+  int n = r12.length();
+  int m = thres.length();
+  NumericMatrix mr12(n,m);
+  for(int i=0;i<n;i++){
+    for(int j=0;j<m;j++){
+      if(rvolatility[i]<thres[j]){
+        mr12(i,j)=r12[i];
+      }else mr12(i,j)=999;
+    }
+  }
+  return mr12;
+}
+
+// [[Rcpp::export]]
+NumericMatrix mr12_thresVolaGeq(DataFrame dat, NumericVector thres){
+  NumericVector r12 = dat["r12"];
+  NumericVector rvolatility = dat["volatility"];
+  int n = r12.length();
+  int m = thres.length();
+  NumericMatrix mr12(n,m);
+  for(int i=0;i<n;i++){
+    for(int j=0;j<m;j++){
+      if(rvolatility[i]>=thres[j]){
+        mr12(i,j)=r12[i];
+      }else mr12(i,j)=999;
+    }
+  }
+  return mr12;
+}
+
+// [[Rcpp::export]]
+NumericMatrix mr13_thresVolaL(DataFrame dat, NumericVector thres){
+  NumericVector r13 = dat["r13"];
+  NumericVector rvolatility = dat["volatility"];
+  int n = r13.length();
+  int m = thres.length();
+  NumericMatrix mr13(n,m);
+  for(int i=0;i<n;i++){
+    for(int j=0;j<m;j++){
+      if(rvolatility[i]<thres[j]){
+        mr13(i,j)=r13[i];
+      }else mr13(i,j)=999;
+    }
+  }
+  return mr13;
+}
+
+// [[Rcpp::export]]
+NumericMatrix mr13_thresVolaGeq(DataFrame dat, NumericVector thres){
+  NumericVector r13 = dat["r13"];
+  NumericVector rvolatility = dat["volatility"];
+  int n = r13.length();
+  int m = thres.length();
+  NumericMatrix mr13(n,m);
+  for(int i=0;i<n;i++){
+    for(int j=0;j<m;j++){
+      if(rvolatility[i]>=thres[j]){
+        mr13(i,j)=r13[i];
+      }else mr13(i,j)=999;
+    }
+  }
+  return mr13;
+}
+
+// [[Rcpp::export]]
+NumericMatrix mr_on_thresVolaL(DataFrame dat, NumericVector thres){
+  NumericVector ron = dat["r_on"];
+  NumericVector rvolatility = dat["volatility"];
+  int n = ron.length();
+  int m = thres.length();
+  NumericMatrix mon(n,m);
+  for(int i=0;i<n;i++){
+    for(int j=0;j<m;j++){
+      if(rvolatility[i]<thres[j]){
+        mon(i,j)=ron[i];
+      }else mon(i,j)=999;
+    }
+  }
+  return mon;
+}
+
+// [[Rcpp::export]]
+NumericMatrix mr_on_thresVolaGeq(DataFrame dat, NumericVector thres){
+  NumericVector ron = dat["r_on"];
+  NumericVector rvolatility = dat["volatility"];
+  int n = ron.length();
+  int m = thres.length();
+  NumericMatrix mon(n,m);
+  for(int i=0;i<n;i++){
+    for(int j=0;j<m;j++){
+      if(rvolatility[i]>=thres[j]){
+        mon(i,j)=ron[i];
+      }else mon(i,j)=999;
+    }
+  }
+  return mon;
+}
+
+// [[Rcpp::export]]
+NumericMatrix mr_onfh_thresVolaL(DataFrame dat, NumericVector thres){
+  NumericVector mronfh = dat["r_onfh"];
+  NumericVector rvolatility = dat["volatility"];
+  int n = mronfh.length();
+  int m = thres.length();
+  NumericMatrix monfh(n,m);
+  for(int i=0;i<n;i++){
+    for(int j=0;j<m;j++){
+      if(rvolatility[i]<thres[j]){
+        monfh(i,j)=mronfh[i];
+      }else monfh(i,j)=999;
+    }
+  }
+  return monfh;
+}
+
+// [[Rcpp::export]]
+NumericMatrix monfh_thresVolaGeq(DataFrame dat, NumericVector thres){
+  NumericVector onfh = dat["onfh"];
+  NumericVector rvolatility = dat["volatility"];
+  int n = onfh.length();
+  int m = thres.length();
+  NumericMatrix monfh(n,m);
+  for(int i=0;i<n;i++){
+    for(int j=0;j<m;j++){
+      if(rvolatility[i]>=thres[j]){
+        monfh(i,j)=onfh[i];
+      }else monfh(i,j)=999;
+    }
+  }
+  return monfh;
+}
+// [[Rcpp::export]]
+NumericMatrix mr13_lag_thresVolaL(DataFrame dat, NumericVector thres){
+  NumericVector r13_lag = dat["r13_lag"];
+  NumericVector rvolatility = dat["volatility"];
+  int n = r13_lag.length();
+  int m = thres.length();
+  NumericMatrix mr13_lag(n,m);
+  for(int i=0;i<n;i++){
+    for(int j=0;j<m;j++){
+      if(rvolatility[i]<thres[j]){
+        mr13_lag(i,j)=r13_lag[i];
+      }else mr13_lag(i,j)=999;
+    }
+  }
+  return mr13_lag;
+}
+
+// [[Rcpp::export]]
+NumericMatrix mr13_lag_thresVolaGeq(DataFrame dat, NumericVector thres){
+  NumericVector r13_lag = dat["r13_lag"];
+  NumericVector rvolatility = dat["volatility"];
+  int n = r13_lag.length();
+  int m = thres.length();
+  NumericMatrix mr13_lag(n,m);
+  for(int i=0;i<n;i++){
+    for(int j=0;j<m;j++){
+      if(rvolatility[i]>=thres[j]){
+        mr13_lag(i,j)=r13_lag[i];
+      }else mr13_lag(i,j)=999;
+    }
+  }
+  return mr13_lag;
+}
+
+
