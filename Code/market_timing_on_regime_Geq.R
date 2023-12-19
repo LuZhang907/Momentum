@@ -6,7 +6,8 @@ library(Rcpp)
 library(moments)
 library(tidyverse)
 
-dat <- fread("./Data/returns_Gao_SPY.csv")
+dat <- fread("./Data/returns_Gao_SPY_with_volatility.csv")
+#dat <- fread("./Data/returns_Gao_SPY.csv") 
 dat <- data.frame(dat)
 dat <- dat %>% drop_na()
 head(dat)
@@ -79,14 +80,15 @@ NShortOrLong <- function(data, thres){
                        ifelse(dat$r10<0 & dat$r11 < 0, -1,0))
   nSL <- data.frame(d_onfh, d_onfh12,d_on,d_12,d_on12,d_lag,
                     d_lagon,d_lag12,d_lagon12,d_1011,d_10,d_11)
-  StrategynSL <- sapply(nSL, function(x) c("long" = length(x[x==1]),
-                                            "short" = length(x[x==-1]),
-                                            "neural" = length(x[x==0])))
+  StrategynSL <- sapply(nSL, function(x) c("neural" = length(x[x==0]),
+                                           "long" = length(x[x==1]),
+                                           "short" = length(x[x==-1])
+                                            ))
   return(StrategynSL)
 }
 
 
-thres <- -0.0121
+thres <- 0.0109
 
 ReturnsGeq <- strategyReturnsGeq(dat, thres)
 ReturnsGeq <- data.frame(ReturnsGeq)
@@ -97,8 +99,8 @@ nSLGeq <- data.frame(nSLGeq)
 nSLGeq$rowname <- rownames(nSLGeq)
 
 
-fwrite(ReturnsGeq,"./Data/ReturnsONGeq.csv")
-fwrite(nSLGeq,"./Data/nSLGeqON.csv")
+fwrite(ReturnsGeq,"./Data/AReturnsONGeq.csv")
+fwrite(nSLGeq,"./Data/AnSLGeqON.csv")
 
 
 

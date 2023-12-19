@@ -5,7 +5,7 @@ library(tidyr)
 
 sourceCpp("./Code/iteration_matrix_generating.cpp", verbose = F, rebuild = T)
 
-data <- fread("./Data/returns_SPY.csv")
+data <- fread("./Data/returns_Gao_SPY.csv")
 data <- data.frame(data)
 data <- data %>% drop_na()
 head(data)
@@ -19,59 +19,61 @@ dat <- merge(data, val, by = "date")
 head(dat)
 dim(dat)
 
+fwrite(dat, "./Data/returns_Gao_SPY_with_volatility.csv")
+
 min_ <- min(dat$volatility)
 max_ <- max(dat$volatility)
 
-thres <- round(seq(min_, max_, 0.001),4)
+thres <- round(seq(min_, max_, 0.0001),4)
 n<- length(thres)
 
-mr1L <- mr1_thresholdL(dat,thres)
-mr1Geq <- mr1_thresholdGeq(dat,thres)
+mr1L <- mr1_thresVolaL(dat,thres)
+mr1Geq <- mr1_thresVolaGeq(dat,thres)
 
-mr2L <- mr2_thresholdL(dat,thres)
-mr2Geq <- mr2_thresholdGeq(dat,thres)
+mr2L <- mr2_thresVolaL(dat,thres)
+mr2Geq <- mr2_thresVolaGeq(dat,thres)
 
-mr3L <- mr3_thresholdL(dat,thres)
-mr3Geq <- mr3_thresholdGeq(dat,thres)
+mr3L <- mr3_thresVolaL(dat,thres)
+mr3Geq <- mr3_thresVolaGeq(dat,thres)
 
-mr4L <- mr4_thresholdL(dat,thres)
-mr4Geq <- mr4_thresholdGeq(dat,thres)
+mr4L <- mr4_thresVolaL(dat,thres)
+mr4Geq <- mr4_thresVolaGeq(dat,thres)
 
-mr4L <- mr4_thresholdL(dat,thres)
-mr4Geq <- mr4_thresholdGeq(dat,thres)
+mr4L <- mr4_thresVolaL(dat,thres)
+mr4Geq <- mr4_thresVolaGeq(dat,thres)
 
-mr5L <- mr5_thresholdL(dat,thres)
-mr5Geq <- mr5_thresholdGeq(dat,thres)
+mr5L <- mr5_thresVolaL(dat,thres)
+mr5Geq <- mr5_thresVolaGeq(dat,thres)
 
-mr6L <- mr6_thresholdL(dat,thres)
-mr6Geq <- mr6_thresholdGeq(dat,thres)
+mr6L <- mr6_thresVolaL(dat,thres)
+mr6Geq <- mr6_thresVolaGeq(dat,thres)
 
-mr7L <- mr7_thresholdL(dat,thres)
-mr7Geq <- mr7_thresholdGeq(dat,thres)
+mr7L <- mr7_thresVolaL(dat,thres)
+mr7Geq <- mr7_thresVolaGeq(dat,thres)
 
-mr8L <- mr8_thresholdL(dat,thres)
-mr8Geq <- mr8_thresholdGeq(dat,thres)
+mr8L <- mr8_thresVolaL(dat,thres)
+mr8Geq <- mr8_thresVolaGeq(dat,thres)
 
-mr9L <- mr9_thresholdL(dat,thres)
-mr9Geq <- mr9_thresholdGeq(dat,thres)
+mr9L <- mr9_thresVolaL(dat,thres)
+mr9Geq <- mr9_thresVolaGeq(dat,thres)
 
-mr10L <- mr10_thresholdL(dat,thres)
-mr10Geq <- mr10_thresholdGeq(dat,thres)
+mr10L <- mr10_thresVolaL(dat,thres)
+mr10Geq <- mr10_thresVolaGeq(dat,thres)
 
-mr11L <- mr11_thresholdL(dat,thres)
-mr11Geq <- mr11_thresholdGeq(dat,thres)
+mr11L <- mr11_thresVolaL(dat,thres)
+mr11Geq <- mr11_thresVolaGeq(dat,thres)
 
-mr12L <- mr12_thresholdL(dat,thres)
-mr12Geq <- mr12_thresholdGeq(dat,thres)
+mr12L <- mr12_thresVolaL(dat,thres)
+mr12Geq <- mr12_thresVolaGeq(dat,thres)
 
-mr13L <- mr13_thresholdL(dat,thres)
-mr13Geq <- mr13_thresholdGeq(dat,thres)
+mr13L <- mr13_thresVolaL(dat,thres)
+mr13Geq <- mr13_thresVolaGeq(dat,thres)
 
-mr13lagL <- mr13_lag_thresholdL(dat,thres)
-mr13lagGeq <- mr13_lag_thresholdGeq(dat,thres)
+mr13lagL <- mr13_lag_thresVolaL(dat,thres)
+mr13lagGeq <- mr13_lag_thresVolaGeq(dat,thres)
 
-mronL <- mr_on_thresholdL(dat,thres)
-mronGeq <- mr_on_thresholdGeq(dat,thres)
+mronL <- mr_on_thresVolaL(dat,thres)
+mronGeq <- mr_on_thresVolaGeq(dat,thres)
 
 my_lmsGeq <- lapply(1:n, function(x) lm(mr13Geq[,x][!mr13Geq[,x]==999] ~ 
                                        mr1Geq[,x][!mr1Geq[,x]==999]+

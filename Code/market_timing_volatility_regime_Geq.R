@@ -87,7 +87,7 @@ NShortOrLong <- function(data, thres){
 }
 
 
-thres <- 1.00E-04
+thres <- 8.00E-04
 
 ReturnsGeq <- strategyReturnsGeq(dat, thres)
 ReturnsGeq <- data.frame(ReturnsGeq)

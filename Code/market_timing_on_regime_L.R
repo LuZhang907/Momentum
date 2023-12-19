@@ -87,7 +87,7 @@ NShortOrLong <- function(data, thres){
 }
 
 
-thres <- -0.0121
+thres <- 0.0109
 
 ReturnsL <- strategyReturnsL(dat, thres)
 ReturnsL <- data.frame(ReturnsL)
