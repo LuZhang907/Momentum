@@ -40,7 +40,7 @@ data <- merge(dat, vix_usd, by="date")
 dim(data)
 head(data)
 
-#fwrite(data, "./Data/returns_vix_usd_spy.csv")
+fwrite(data, "./Data/returns_vix_usd_spy.csv")
 date_ <- data$date
 data$date <- NULL
 mylm <- lm(r13~.-r_onfh-volatility, data = data)
