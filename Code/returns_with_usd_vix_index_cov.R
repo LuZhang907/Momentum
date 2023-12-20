@@ -21,11 +21,14 @@ usd$usdlagclose <- lag(usd$Close)
 vix$vixpct <- (vix$Close-lag(vix$Close))/lag(vix$Close)
 usd$usdpct <- (usd$Close-lag(usd$Close))/lag(usd$Close)
 
+vix$vixpctlag <- lag(vix$vixpct)
+usd$usdpctlag <-  lag(usd$usdpct)
+
 vix$date <- as.Date(vix$Date)
 usd$date <- as.Date(usd$Date)
 
-vix <- vix %>% select(date, vixlagclose, vixpct)
-usd <- usd %>% select(date, usdlagclose, usdpct)
+vix <- vix %>% select(date, vixlagclose, vixpct, vixpctlag)
+usd <- usd %>% select(date, usdlagclose, usdpct, usdpctlag)
 
 dim(dat)
 dim(vix)
