@@ -221,6 +221,84 @@ NumericMatrix iter_r13_lag(Rcpp::DataFrame dat, int window){
   return r13_lag_matrix;
 }
 
+// [[Rcpp::export]]
+NumericMatrix iter_vixlagclose(Rcpp::DataFrame dat, int window){
+  NumericVector vixlagclose = dat["vixlagclose"];
+  int n = vixlagclose.length();
+  NumericMatrix vixlagclose_matrix(n-window+1,window);
+  for( int i=0; i< n-window+1;i++){
+    for(int j=0;j<window; j++){
+      vixlagclose_matrix(i,j) = vixlagclose[i+j];
+    }
+  }
+  return vixlagclose_matrix;
+}
+
+// [[Rcpp::export]]
+NumericMatrix iter_vixpct(Rcpp::DataFrame dat, int window){
+  NumericVector vixpct = dat["vixpct"];
+  int n = vixpct.length();
+  NumericMatrix vixpct_matrix(n-window+1,window);
+  for( int i=0; i< n-window+1;i++){
+    for(int j=0;j<window; j++){
+      vixpct_matrix(i,j) = vixpct[i+j];
+    }
+  }
+  return vixpct_matrix;
+}
+
+// [[Rcpp::export]]
+NumericMatrix iter_vixpctlag(Rcpp::DataFrame dat, int window){
+  NumericVector vixpct = dat["vixpctlag"];
+  int n = vixpct.length();
+  NumericMatrix vixpct_matrix(n-window+1,window);
+  for( int i=0; i< n-window+1;i++){
+    for(int j=0;j<window; j++){
+      vixpct_matrix(i,j) = vixpct[i+j];
+    }
+  }
+  return vixpct_matrix;
+}
+
+// [[Rcpp::export]]
+NumericMatrix iter_usdlagclose(Rcpp::DataFrame dat, int window){
+  NumericVector usdlagclose = dat["usdlagclose"];
+  int n = usdlagclose.length();
+  NumericMatrix usdlagclose_matrix(n-window+1,window);
+  for( int i=0; i< n-window+1;i++){
+    for(int j=0;j<window; j++){
+      usdlagclose_matrix(i,j) = usdlagclose[i+j];
+    }
+  }
+  return usdlagclose_matrix;
+}
+
+// [[Rcpp::export]]
+NumericMatrix iter_usdpct(Rcpp::DataFrame dat, int window){
+  NumericVector usdpct = dat["usdpct"];
+  int n = usdpct.length();
+  NumericMatrix usdpct_matrix(n-window+1,window);
+  for( int i=0; i< n-window+1;i++){
+    for(int j=0;j<window; j++){
+      usdpct_matrix(i,j) = usdpct[i+j];
+    }
+  }
+  return usdpct_matrix;
+}
+
+// [[Rcpp::export]]
+NumericMatrix iter_usdpctlag(Rcpp::DataFrame dat, int window){
+  NumericVector usdpct = dat["usdpctlag"];
+  int n = usdpct.length();
+  NumericMatrix usdpct_matrix(n-window+1,window);
+  for( int i=0; i< n-window+1;i++){
+    for(int j=0;j<window; j++){
+      usdpct_matrix(i,j) = usdpct[i+j];
+    }
+  }
+  return usdpct_matrix;
+}
+
 //[[Rcpp::export]]
 NumericVector cumRet_calculation(NumericVector direction, NumericVector returns){
   int n = direction.length();
