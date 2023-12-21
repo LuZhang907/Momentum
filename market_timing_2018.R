@@ -20,8 +20,11 @@ dat2018$eta711 <- ifelse(dat2018$r7>0 & dat2018$r11>0,dat$r13,
 dat2018$alwayslong <- dat2018$r13
 dat2018$buyandhold <- dat2018$r_daily
 
+fwrite(dat2018,"./Data/market_timing_2018_vis_data.csv")
 dat2018$date <- NULL
 dat2018$year <- NULL
+
+
 sapply(dat2018, function(x) c("avg ret" = round(mean(x)*100,4),
                               "stand dev" = round(sd(x)*100,4),
                               "skewness" = round(skewness(x),4),
