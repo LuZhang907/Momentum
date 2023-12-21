@@ -49,7 +49,7 @@ names(tvalues) <- c("intercept","b13_lag","b_on","b1","b2","b3","b4","b5","b6","
 head(tvalues)
 
 # t critical value when p=0.05, df = n-15
-qt(p=0.05/2, df = 485, lower.tail = FALSE)
+#qt(p=0.05/2, df = 485, lower.tail = FALSE)
 #1.964867
 
 date <- dat[(window_):dim(dat)[1],1]
