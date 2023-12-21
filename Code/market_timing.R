@@ -85,6 +85,15 @@ dat$d_11 <- ifelse(dat$r11>0, 1,-1)
 dat$d_1011 <- ifelse(dat$r10>0 & dat$r11 >0, 1, 
                      ifelse(dat$r10<0 & dat$r11 < 0, -1,0))
 
+
+ddata <- dat[,32:43]
+head(ddata)
+
+sapply(ddata, function(x) c("neural" = length(x[x==0]),
+                          "long" = length(x[x==1]),
+                          "short" = length(x[x==-1])
+))
+
 dat$date <- date_
 fwrite(dat, "./Data/market_timing_vis_data.csv")
 # newey west t test

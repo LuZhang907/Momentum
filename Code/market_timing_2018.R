@@ -14,7 +14,7 @@ dat2018$eta11 <- ifelse(dat2018$r11>0, dat$r13, -dat$r13)
 dat2018$eta710 <- ifelse(dat2018$r7>0 & dat2018$r10>0,dat$r13, 
                          ifelse(dat2018$r7< 0 & dat2018$r10<0, -dat$r13,0))
 dat2018$eta1011 <- ifelse(dat2018$r10>0 & dat2018$r11>0,dat$r13, 
-                         ifelse(dat2018$r10< 0 & dat2018$r11<0, -dat$r13,0))
+                          ifelse(dat2018$r10< 0 & dat2018$r11<0, -dat$r13,0))
 dat2018$eta711 <- ifelse(dat2018$r7>0 & dat2018$r11>0,dat$r13, 
                          ifelse(dat2018$r7< 0 & dat2018$r11<0, -dat$r13,0))
 dat2018$alwayslong <- dat2018$r13
@@ -31,7 +31,16 @@ sapply(dat2018, function(x) c("avg ret" = round(mean(x)*100,4),
 ))
 
 
-plot(dat2018$eta1011, type="l")
+dat2018$d_10 <- ifelse(dat2018$r10>0 , 1, -1)
+dat2018$d_11 <- ifelse(dat2018$r11>0, 1,-1)
+dat2018$d_1011 <- ifelse(dat2018$r10>0 & dat2018$r11 >0, 1, 
+                     ifelse(dat2018$r10<0 & dat2018$r11 < 0, -1,0))
+
+ddata <- dat2018[,26:28]
+sapply(ddata, function(x) c("neural" = length(x[x==0]),
+                            "long" = length(x[x==1]),
+                            "short" = length(x[x==-1])
+))
 
 library(sandwich)
 library(lmtest)
