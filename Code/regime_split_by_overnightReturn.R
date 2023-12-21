@@ -5,7 +5,7 @@ library(tidyr)
 
 sourceCpp("./Code/iteration_matrix_generating.cpp", verbose = F, rebuild = T)
 
-dat <- fread("./Data/returns_SPY.csv")
+dat <- fread("./Data/returns_Gao_SPY.csv")
 dat <- data.frame(dat)
 dat <- dat %>% drop_na()
 head(dat)
@@ -16,7 +16,7 @@ hist(dat$r_on)
 min_ <- min(dat$r_on)
 max_ <- max(dat$r_on)
 
-thres <- round(seq(min_, max_, 0.01),4)
+thres <- round(seq(min_, max_, 0.001),4)
 n<- length(thres)
 
 mr1L <- mr1_thresholdL(dat,thres)
