@@ -7,6 +7,7 @@ tvalues <- data.frame(tvalues)
 
 # visualization
 pdf("./images/tvalues_13lag_SPY.pdf", 5,4)
+
 plot(tvalues$b13_lag, type="l", xaxt = "n", xlab = "", ylab="", lwd=2, ylim=c(-7,7))
 axis(1, c(0,500,1000,1500,2000),seq(2009,2017,2))
 abline(h=1.96, col="red", lty=2)
@@ -151,12 +152,12 @@ tvalues$r_onfh <- dat2$r_onfh
 
 
 pdf("./images/tvalues_seqrolling_on_onfh.pdf", 5,4)
-plot(tvalues$r_on, type="l", xaxt = "n", xlab = "", ylab="", 
+plot(tvalues$r_on, type="l", xaxt = "n", xlab = "", ylab="", col="blue",
      lwd=2, ylim = c(4.5,9))
 lines(tvalues$r_onfh, lwd = 2, lty=2)
 axis(1, c(0,500,1000,1500,2000),seq(2009,2017,2))
 legend("topleft", legend=c(expression(t(r[on])), expression(t(r[onfh]))),
-       lwd = c(2,2), lty = c(1,2),cex=1.2)
+       lwd = c(2,2), lty = c(1,2),cex=1.2, col=c("blue","black"))
 dev.off()
 
 pdf("./images/tvalues_seqrolling_1.pdf", 5,4)
